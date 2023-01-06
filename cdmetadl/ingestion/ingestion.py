@@ -247,6 +247,33 @@ def ingestion(argv) -> None:
         total_classes = train_classes
     vprint("\t[+] Train generator", VERBOSE)
     
+    print(meta_train_generator)
+    
+    for i, batch in enumerate(meta_train_generator(20)):
+        # Prepare data
+        X_train, y_train = batch
+        X_train = X_train.to("cpu")
+        y_train = y_train.view(-1).to("cpu")
+
+        print(i, X_train.shape, y_train.shape)
+
+    raise
+    
+    for i, task in enumerate(meta_train_generator(20)):
+        
+        # Prepare data
+        X_train, y_train, _ = task.support_set
+        X_train, y_train = X_train.to("cpu"), y_train.to("cpu")
+        X_test, y_test, _ = task.query_set
+        X_test, y_test = X_test.to("cpu"), y_test.to("cpu")
+        
+        print(i, X_train.shape, y_train.shape)
+        print(i, X_test.shape, y_test.shape)
+        print()
+    
+    raise
+    
+    
     # Valid generator
     if len(valid_datasets_info) > 0:
         valid_datasets = create_datasets(valid_datasets_info, IMG_SIZE)

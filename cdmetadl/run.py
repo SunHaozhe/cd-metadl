@@ -79,7 +79,8 @@ def main(argv) -> None:
         + f"--input_data_dir={input_data_dir} " \
         + f"--output_dir_ingestion={output_dir_ingestion} " \
         + f"--submission_dir={submission_dir}"
-
+    
+    
     command_scoring = "python -m cdmetadl.scoring.scoring " \
         + f"--seed={seed} " \
         + f"--verbose={verbose} " \
@@ -95,7 +96,7 @@ def main(argv) -> None:
     cmd_sco = split(command_scoring)
     
     call(cmd_ing)
-    call(cmd_sco)
+    #call(cmd_sco)
 
 
 if __name__ == "__main__":
